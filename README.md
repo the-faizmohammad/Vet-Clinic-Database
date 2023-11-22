@@ -29,7 +29,7 @@ This repository includes files with plain SQL that can be used to recreate a dat
 - [📝 License](#license)
 
 
-# 📖 [Vet-Clinic-Database] <a name="about-project"></a>
+# 📖 Vet Clinic-Database <a name="about-project"></a>
 
 > This project involves creating a vet clinic database using SQL. The schema defines an "animals" table, and data is inserted for various animals. Queries are written to retrieve specific information, and results are documented with screenshots in the provided repository.
 
