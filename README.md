@@ -134,7 +134,7 @@ Here are some future features we plan to add to the Vet Clinic Database:
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/DevKaranJ/vet-clinic/issues).
+Feel free to check the [issues page](https://github.com/the-faizmohammad/Vet-Clinic-Database/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
