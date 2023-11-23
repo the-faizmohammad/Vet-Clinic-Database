@@ -113,3 +113,66 @@ GROUP BY owners.full_name
 ORDER BY animal_count DESC
 LIMIT 1;
 
+-- Join Table Query
+
+-- Query 1
+SELECT animals.name AS last_seen_animal
+FROM visits
+INNER JOIN vets ON visits.vet_id = vets.id
+INNER JOIN animals ON visits.animal_id = animals.id
+WHERE vets.name = 'William Tatcher'
+ORDER BY visits.visit_date DESC
+LIMIT 1;
+
+-- Query 2
+SELECT COUNT(DISTINCT visits.animal_id) AS num_animals_seen
+FROM visits
+INNER JOIN vets ON visits.vet_id = vets.id
+WHERE vets.name = 'Stephanie Mendez';
+
+-- Query 3
+SELECT vets.name, COALESCE(string_agg(species.name, ', '), 'No specialties') AS specialties
+FROM vets
+LEFT JOIN specializations ON vets.id = specializations.vet_id
+LEFT JOIN species ON specializations.species_id = species.id
+GROUP BY vets.name;
+
+-- Query 4
+SELECT DISTINCT animals.name
+FROM visits
+INNER JOIN vets ON visits.vet_id = vets.id
+INNER JOIN animals ON visits.animal_id = animals.id
+WHERE vets.name = 'Stephanie Mendez'
+AND visits.visit_date BETWEEN '2020-04-01' AND '2020-08-30';
+
+-- Query 5
+SELECT animals.name
+FROM visits
+INNER JOIN animals ON visits.animal_id = animals.id
+GROUP BY animals.name
+ORDER BY COUNT(visits.animal_id) DESC
+LIMIT 1;
+
+-- Query 6
+SELECT animals.name AS animal_name, vets.name AS vet_name, visits.visit_date
+FROM visits
+INNER JOIN animals ON visits.animal_id = animals.id
+INNER JOIN vets ON visits.vet_id = vets.id
+ORDER BY visits.visit_date DESC
+LIMIT 1;
+
+-- Query 7
+SELECT COUNT(*) AS num_visits_without_specialty
+FROM visits
+LEFT JOIN specializations ON visits.vet_id = specializations.vet_id
+WHERE specializations.species_id IS NULL;
+
+-- Query 8
+SELECT species.name AS suggested_specialty
+FROM visits
+INNER JOIN animals ON visits.animal_id = animals.id
+INNER JOIN species ON animals.species_id = species.id
+WHERE visits.vet_id = (SELECT id FROM vets WHERE name = 'Maisy Smith')
+GROUP BY species.name
+ORDER BY COUNT(visits.animal_id) DESC
+LIMIT 1;
