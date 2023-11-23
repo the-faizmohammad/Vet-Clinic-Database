@@ -44,3 +44,33 @@ UPDATE animals SET owner_id = (CASE
                                 WHEN name IN ('Angemon', 'Boarmon') THEN (SELECT id FROM owners WHERE full_name = 'Dean Winchester')
                              END);
 
+-- Join Tables Data
+
+-- Insert data into the vets table
+INSERT INTO vets (name, age, date_of_graduation) VALUES
+('William Tatcher', 45, '2000-04-23'),
+('Maisy Smith', 26, '2019-01-17'),
+('Stephanie Mendez', 64, '1981-05-04'),
+('Jack Harkness', 38, '2008-06-08');
+
+-- Insert data into the specializations table
+INSERT INTO specializations (vet_id, species_id) VALUES
+(1, (SELECT id FROM species WHERE name = 'Pokemon')),
+(3, (SELECT id FROM species WHERE name = 'Digimon')),
+(3, (SELECT id FROM species WHERE name = 'Pokemon')),
+(4, (SELECT id FROM species WHERE name = 'Digimon'));
+
+-- Insert data into the visits table
+INSERT INTO visits (animal_id, vet_id, visit_date) VALUES
+-- Provided data for visits
+(1, 1, '2020-05-24'),
+(1, 3, '2020-07-22'),
+(2, 4, '2021-02-02'),
+(3, 2, '2020-01-05'),
+(3, 2, '2020-03-08'),
+(3, 2, '2020-05-14'),
+(4, 3, '2021-05-04'),
+(5, 4, '2021-02-24'),
+(6, 3, '2020-05-24'),
+(6, 1, '2021-01-11'),
+(7, 2, '2022-05-14');
