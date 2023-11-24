@@ -46,15 +46,21 @@ CREATE TABLE vets (
 
 -- Create the specializations table (join table for species and vets)
 CREATE TABLE specializations (
-    vet_id INTEGER REFERENCES vets(id),
-    species_id INTEGER REFERENCES species(id),
-    PRIMARY KEY (vet_id, species_id)
+    vet_id INTEGER,
+    species_id INTEGER,
+    PRIMARY KEY (vet_id, species_id),
+    FOREIGN KEY (vet_id) REFERENCES vets(id),
+    FOREIGN KEY (species_id) REFERENCES species(id)
 );
+
 
 -- Create the visits table (join table for animals and vets)
 CREATE TABLE visits (
-    animal_id INTEGER REFERENCES animals(id),
-    vet_id INTEGER REFERENCES vets(id),
+    vet_id INTEGER,
+    animal_id INTEGER,
     visit_date DATE,
-    PRIMARY KEY (animal_id, vet_id, visit_date)
+    PRIMARY KEY (vet_id, animal_id, visit_date),
+    FOREIGN KEY (vet_id) REFERENCES vets(id),
+    FOREIGN KEY (animal_id) REFERENCES animals(id)
 );
+
